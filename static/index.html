@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Hippo Paint</title>
+		<meta name="description" content="The web is your coloring book" />
+		<script src="http://www.google.com/jsapi?key=ABQIAAAAZBUp8j6JnniGrndB1bLvRxRd3-KlDmmnjOnOXH9J2hr77tvP7xTSxd2eMx0jt2DwITfICT4mBmhlag"></script>
+		<script>
+			google.load("search", "1", { 'language': 'en' });
+			google.load("jquery", "1.5");
+		</script>
+		<script type="text/javascript">
+{% include 'hippo.js' %}
+		</script>
+		<style>
+{% include 'hippo.css' %}
+		</style>
+		<style media="print">
+{% include 'hippo-print.css' %}
+		</style>
+		<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+		<script type="text/javascript">
+
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-167397-6']);
+		  _gaq.push(['_trackPageview']);
+
+		  (function() {
+		    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  })();
+
+		</script>
+	</head>
+	<body>
+		<div id="branding"></div>
+		<div id="logo">
+		<span id="logo1">Hippo Paint</span><br/>
+		<span id="logo2">the web is your coloring book</span>
+		</div>
+		<div id="search">
+			<form id="f" onsubmit="do_search(); return false;">
+				<input id="q" type="text" autofocus x-webkit-speech onwebkitspeechchange="do_search();" />
+				<input id="submit_button" type="submit" value="Search" />
+			</form>
+		</div>
+		<div id="hint">
+			<p>Type something you'd like to paint (try <a href="#" onclick="auto_search('hippo'); return false;">hippo</a> or <a href="#" onclick="auto_search('triceratops'); return false;">triceratops</a>).</p>
+		</div>
+		<div id="results" style="display: none;">
+		</div>
+		<div id="loading" style="display: none;">
+			<table align="center"><tr><td><img src="/media/loading.gif" /></td></tr></table>
+		</div>
+		<div id="coloring" style="display: none;">
+			<table align="center">
+			<tr>
+			<td class="sidebar">
+				<div class="palette" style="background-color: #000000;" onmousedown="set_color(this, 0, 0, 0); return false;"></div>
+				<div class="palette white" style="background-color: #ffffff;" onmousedown="set_color(this, 255, 255, 255); return false;"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="palette random"></div>
+				<div class="randomize" onmousedown="randomize_colors(); return false;"><img src="/media/randomize.png" alt="shuffle colors" title="shuffle colors" /></div>
+			</td>
+			<td>
+			<div>
+				<canvas id="pic" width="640" height="640" unselectable="on"></canvas>
+				<span id="print_url"><br/>www.hippopaint.com</span>
+			</div>
+			</td>
+			<td class="sidebar">
+			<div><img onmousedown="$('#coloring').hide(); $('#results').show(); return false;" class="tool" src="/media/back_to_results.png" alt="back to results" title="back to results" /></div>
+			<div><img onmousedown="set_tool('bucket'); return false;" class="tool" id="bucket" src="/media/bucket.png" alt="bucket" title="bucket" /></div>
+			<div><img onmousedown="set_tool('small_brush'); return false;" class="tool" id="small_brush" src="/media/small_brush.png" alt="small brush" title="small brush" /></div>
+			<div><img onmousedown="set_tool('big_brush'); return false;" class="tool" id="big_brush" src="/media/big_brush.png" alt="big brush" title="big brush" /></div>
+			<div><img onmousedown="set_tool('picker'); return false;" class="tool" id="picker" src="/media/color_picker.png" alt="pick color from image" title="pick color from image" /></div>
+			<div><img onmousedown="rotate('left'); return false;" class="tool" src="/media/rotate_left.png" alt="rotate left" title="rotate left" /></div>
+			<div><img onmousedown="rotate('right'); return false;" class="tool" src="/media/rotate_right.png" alt="rotate right" title="rotate right" /></div>
+			<div><img onmousedown="window.print(); return false;" class="tool" src="/media/print.png" alt="print" title="print" /></div>
+			<div><img onmousedown="do_undo(); return false;" class="tool" id="undo" src="/media/undo.png" alt="undo" title="undo" /></div>
+			</td>
+			</tr>
+			<tr><td></td><td id="copyright_info"></td><td></td></tr>
+			</table>
+		</div>
+		<div id="browser" style="display: none;">
+			<p>You need a modern browser, like <a href="http://www.google.com/chrome">Chrome</a>, <a href="http://www.mozilla.com/">Firefox</a> or <a href="http://www.opera.com/">Opera</a>.</p>
+			<p id="work_too">(Safari and Internet Explorer 9+ will work, too.)</p>
+		</div>
+		<div id="email">
+			email us at <a href="mailto:hippo@hippopaint.com">hippo@hippopaint.com</a>
+		</div>
+		<div id="social">
+			<g:plusone></g:plusone>
+			<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.hippopaint.com%2F&amp;send=false&amp;layout=button_count&amp;width=106&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:106px; height:21px;" allowTransparency="true"></iframe>
+		</div>
+	</body>
+</html>

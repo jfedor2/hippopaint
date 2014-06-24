@@ -1,0 +1,10 @@
+html, body, div {
+	margin: 0;
+	padding: 0;
+}
+#search,#copyright_info,.sidebar,#branding,#email,#social {
+	display: none;
+}
+#print_url {
+	display: inline;
+}
