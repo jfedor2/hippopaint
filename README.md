@@ -3,6 +3,8 @@ Hippo Paint
 
 This is the source code behind the website that used to exist at www.hippopaint.com. It's a coloring book web application where you search for line art images using Google Image Search and then add color to them.
 
+![Screenshot](hippopaint-screenshot2.png)
+
 The app uses Google App Engine, it should be possible to deploy it with minimal changes (application ID in the manifest, Google Analytics ID, Google JavaScript API key, URLs in the social widgets etc.).
 
 If you want to set it up outside Google App Engine, it should be easy too as the server-side component is pretty trivial.
