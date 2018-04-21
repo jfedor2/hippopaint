@@ -11,4 +11,4 @@ If you want to set it up outside Google App Engine, it should be easy too as the
 
 Keep in mind that the app uses the Image Search API that has been deprecated for 3+ years, so Google could disable it at any moment without warning.
 
-If you launch your version of the website or if you have any questions, send me an email at hippo@hippopaint.com.
+If you launch your version of the website or if you have any questions, send me an email at jfedor@jfedor.org.
